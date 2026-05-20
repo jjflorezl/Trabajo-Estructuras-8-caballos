@@ -58,12 +58,19 @@ public class Logica_Caballo {
         int caballosIniciales = 0; //cantidad de caballos que ya están puestos al iniciar
 
         if (opcion == 2) {
-            System.out.print("Ingrese la fila inicial del caballo (0 a 7): ");
-            int fila = scanner.nextInt();
+            int fila = 0;
+            int columna = 0;
+            try {
+                System.out.print("Ingrese la fila inicial del caballo (0 a 7): ");
+                 fila = scanner.nextInt();
 
-            System.out.print("Ingrese la columna inicial del caballo (0 a 7): ");
-            int columna = scanner.nextInt();
-
+                System.out.print("Ingrese la columna inicial del caballo (0 a 7): ");
+                columna = scanner.nextInt();
+            }catch(InputMismatchException e){
+                IO.println("Formato invalido");
+                scanner.next();
+                return;
+            }
             if (fila >= 0 && fila < N && columna >= 0 && columna < N) {
                 tablero[fila][columna] = 1; //ubicar el caballo inicial en el tablero
                 caballosIniciales = 1; //ya hay un caballo colocado
