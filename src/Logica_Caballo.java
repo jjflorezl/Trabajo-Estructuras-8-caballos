@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Logica_Caballo {
 
@@ -39,7 +35,7 @@ public class Logica_Caballo {
             this.columna = columna;
         }
     }
-
+//no
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -51,8 +47,14 @@ public class Logica_Caballo {
         System.out.println("1. Iniciar con tablero vacío");
         System.out.println("2. Iniciar con un caballo ya ubicado");
         System.out.print("Seleccione una opción: ");
-        int opcion = scanner.nextInt();
-
+        int opcion=0;
+        try {
+             opcion= scanner.nextInt();
+        }catch(InputMismatchException e){
+            IO.println("Formato invalido");
+            scanner.next();
+        return;
+        }
         int caballosIniciales = 0; //cantidad de caballos que ya están puestos al iniciar
 
         if (opcion == 2) {
@@ -95,10 +97,16 @@ public class Logica_Caballo {
             System.out.println("1. Sí");
             System.out.println("2. No");
             System.out.print("Seleccione una opción: ");
-            continuar = scanner.nextInt();
-        }
+            try {
+                continuar = scanner.nextInt();
+            }catch (InputMismatchException e){
+                IO.println("Opcion no valida.");
+                scanner.next();
+                continuar = 0;
+            }
+            }
     }
-
+    //no
     //metodo con el que se busca encontrar una forma valida de ubicar los 8 caballos
     static boolean resolverDesde(Estado estado) {
         if (estado.caballosColocados == TOTAL_CABALLOS) { //caso base: ya se ubicaron los 8 caballos
@@ -197,7 +205,7 @@ public class Logica_Caballo {
 
         return true; //si ningún caballo ataca esta posición, es seguro
     }
-
+    //no
     //mostrar el tablero
     static void imprimir(int[][] tablero) {
         for (int[] fila : tablero) {
